@@ -127,9 +127,9 @@ export function Sd() {
                 chatStyles["chat-body-title"],
               )}
             >
-              <div className={`window-header-main-title`}>Stability AI</div>
+              <div className={`window-header-main-title`}>Islamic Art Generator</div>
               <div className="window-header-sub-title">
-                {Locale.Sd.SubTitle(sdImages.length || 0)}
+                Create beautiful Islamic-themed images and illustrations
               </div>
             </div>
 

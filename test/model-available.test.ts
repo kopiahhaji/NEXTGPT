@@ -53,7 +53,7 @@ describe("isModelNotavailableInServer", () => {
     expect(result).toBe(true);
   });
 
-  // FIXME: 这个测试用例有问题，需要修复
+  // FIXME: This test case has a problem and needs to be fixed
   //   test("support passing multiple providers, model available on one of the providers will return false", () => {
   //     const customModels = "-all,gpt-4@google";
   //     const modelName = "gpt-4";

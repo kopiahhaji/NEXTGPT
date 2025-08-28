@@ -8,7 +8,7 @@
 
 English / [Bahasa Malaysia](./README_MS.md)
 
-<a href="https://trendshift.io/repositories/5973" target="_blank"><img src="https://trendshift.io/api/badge/repositories/5973" alt="digitaldakwah%2Fustaz-ai-assistant | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
+<a href="https://trendshift.io/repositories/5973" target="_blank"><img src="https://trendshift.io/api/badge/repositories/5973" alt="kopiahhaji%2Fustaz-ai-assistant | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
 
 🕌 AI-Powered Islamic Education Platform with Claude, DeepSeek, GPT4 & Gemini Pro support.
 
@@ -18,18 +18,18 @@ English / [Bahasa Malaysia](./README_MS.md)
 [![MacOS][MacOS-image]][download-url]
 [![Linux][Linux-image]][download-url]
 
-[Ustaz AI](https://cloud.digitaldakwah.org?utm_source=readme) / [Web App Demo](https://app.digitaldakwah.org) / [Desktop App](https://github.com/digitaldakwah/ustaz-ai-assistant/releases)
+[Ustaz AI](https://cloud.digitaldakwah.org?utm_source=readme) / [Web App Demo](https://app.digitaldakwah.org) / [Desktop App](https://github.com/kopiahhaji/ustaz-ai-assistant/releases)
 
 [saas-url]: https://cloud.digitaldakwah.org?utm_source=readme
 [saas-image]: https://img.shields.io/badge/Ustaz_AI-Saas-green?logo=microsoftedge
 [web-url]: https://app.digitaldakwah.org/
-[download-url]: https://github.com/digitaldakwah/ustaz-ai-assistant/releases
+[download-url]: https://github.com/kopiahhaji/ustaz-ai-assistant/releases
 [Web-image]: https://img.shields.io/badge/Web-PWA-orange?logo=microsoftedge
 [Windows-image]: https://img.shields.io/badge/-Windows-blue?logo=windows
 [MacOS-image]: https://img.shields.io/badge/-MacOS-black?logo=apple
 [Linux-image]: https://img.shields.io/badge/-Linux-333?logo=ubuntu
 
-[<img src="https://vercel.com/button" alt="Deploy on Vercel" height="30">](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fdigitaldakwah%2Fustaz-ai-assistant&env=OPENAI_API_KEY&env=CODE&project-name=ustaz-ai&repository-name=ustaz-ai)
+[<img src="https://vercel.com/button" alt="Deploy on Vercel" height="30">](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fkopiahhaji%2Fustaz-ai-assistant&env=OPENAI_API_KEY&env=CODE&project-name=ustaz-ai&repository-name=ustaz-ai)
 
 </div>
 
@@ -109,11 +109,11 @@ For enterprise inquiries, please contact: **business@nextchat.dev**
 - New in v2: create, share and debug your chat tools with prompt templates (mask)
 - Awesome prompts powered by [awesome-chatgpt-prompts-zh](https://github.com/PlexPt/awesome-chatgpt-prompts-zh) and [awesome-chatgpt-prompts](https://github.com/f/awesome-chatgpt-prompts)
 - Automatically compresses chat history to support long conversations while also saving your tokens
-- I18n: English, 简体中文, 繁体中文, 日本語, Français, Español, Italiano, Türkçe, Deutsch, Tiếng Việt, Русский, Čeština, 한국어, Indonesia
+- I18n: English, Simplified Chinese, Traditional Chinese, 日本語, Français, Español, Italiano, Türkçe, Deutsch, Tiếng Việt, Русский, Čeština, 한국어, Indonesia
 
 <div align="center">
    
-![主界面](./docs/images/cover.png)
+![Main Interface](./docs/images/cover.png)
 
 </div>
 
@@ -147,7 +147,7 @@ For enterprise inquiries, please contact: **business@nextchat.dev**
 
 1. Get [OpenAI API Key](https://platform.openai.com/account/api-keys);
 2. Click
-   [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FYidadaa%2FChatGPT-Next-Web&env=OPENAI_API_KEY&env=CODE&project-name=chatgpt-next-web&repository-name=ChatGPT-Next-Web), remember that `CODE` is your page password;
+   [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fkopiahhaji%2Fustaz-ai-assistant&env=OPENAI_API_KEY&env=CODE&project-name=ustaz-ai&repository-name=ustaz-ai), remember that `CODE` is your page password;
 3. Enjoy :)
 
 ## FAQ
@@ -469,7 +469,7 @@ bash <(curl -s https://raw.githubusercontent.com/Yidadaa/ChatGPT-Next-Web/main/s
 
 ## Synchronizing Chat Records (UpStash)
 
-| [简体中文](./docs/synchronise-chat-logs-cn.md) | [English](./docs/synchronise-chat-logs-en.md) | [Italiano](./docs/synchronise-chat-logs-es.md) | [日本語](./docs/synchronise-chat-logs-ja.md) | [한국어](./docs/synchronise-chat-logs-ko.md)
+| [Simplified Chinese](./docs/synchronise-chat-logs-cn.md) | [English](./docs/synchronise-chat-logs-en.md) | [Italiano](./docs/synchronise-chat-logs-es.md) | [日本語](./docs/synchronise-chat-logs-ja.md) | [한국어](./docs/synchronise-chat-logs-ko.md)
 
 ## Documentation
 

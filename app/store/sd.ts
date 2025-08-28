@@ -16,6 +16,8 @@ const defaultModel = {
   value: models[0].value,
 };
 
+// Development mode: Only SD3 model is available
+// TODO: Re-enable other models when plugin directory issues are resolved
 const defaultParams = getModelParamBasicData(models[0].params({}), {});
 
 const DEFAULT_SD_STATE = {

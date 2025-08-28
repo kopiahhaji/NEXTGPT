@@ -1,8 +1,8 @@
 import { IconButton } from "@/app/components/button";
 import GithubIcon from "@/app/icons/github.svg";
-import SDIcon from "@/app/icons/sd.svg";
 import ReturnIcon from "@/app/icons/return.svg";
 import HistoryIcon from "@/app/icons/history.svg";
+import IslamicIcon from "@/app/icons/bot.svg"; // Using bot icon for Islamic theme
 import Locale from "@/app/locales";
 
 import { Path, REPO_URL } from "@/app/constant";
@@ -87,18 +87,18 @@ export function SideBar(props: { className?: string }) {
               <IconButton
                 icon={<ReturnIcon />}
                 bordered
-                title={Locale.Sd.Actions.ReturnHome}
+                title="Return to Islamic Education Hub"
                 onClick={() => navigate(Path.Home)}
               />
             </div>
           </div>
-          <SDIcon width={50} height={50} />
+          <IslamicIcon width={50} height={50} />
           <div className="window-actions">
             <div className="window-action-button">
               <IconButton
                 icon={<HistoryIcon />}
                 bordered
-                title={Locale.Sd.Actions.History}
+                title="Islamic Art History"
                 onClick={() => navigate(Path.SdNew)}
               />
             </div>
@@ -110,11 +110,11 @@ export function SideBar(props: { className?: string }) {
             <IconButton
               icon={<ReturnIcon />}
               bordered
-              title={Locale.Sd.Actions.ReturnHome}
+              title="Return to Islamic Education Hub"
               onClick={() => navigate(Path.Home)}
             />
           }
-          logo={<SDIcon width={38} height={"100%"} />}
+          logo={<IslamicIcon width={38} height={"100%"} />}
         ></SideBarHeader>
       )}
       <SideBarBody>

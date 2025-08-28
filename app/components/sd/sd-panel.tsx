@@ -4,6 +4,8 @@ import { Select } from "@/app/components/ui-lib";
 import { IconButton } from "@/app/components/button";
 import Locale from "@/app/locales";
 import { useSdStore } from "@/app/store/sd";
+import { IslamicContentGenerator } from "./islamic-content-generator";
+import { AudioTranscription } from "./audio-transcription";
 import clsx from "clsx";
 
 export const params = [
@@ -107,17 +109,7 @@ const sdCommonParams = (model: string, data: any) => {
 
 export const models = [
   {
-    name: "Stable Image Ultra",
-    value: "ultra",
-    params: (data: any) => sdCommonParams("ultra", data),
-  },
-  {
-    name: "Stable Image Core",
-    value: "core",
-    params: (data: any) => sdCommonParams("core", data),
-  },
-  {
-    name: "Stable Diffusion 3",
+    name: "Stable Diffusion 3 (Development)",
     value: "sd3",
     params: (data: any) => {
       return sdCommonParams("sd3", data).filter((item) => {
@@ -279,9 +271,17 @@ export const getParams = (model: any, params: any) => {
 export function SdPanel() {
   const sdStore = useSdStore();
   const currentModel = sdStore.currentModel;
-  const setCurrentModel = sdStore.setCurrentModel;
   const params = sdStore.currentParams;
   const setParams = sdStore.setCurrentParams;
+
+  // Set default model to sd3 for development
+  React.useEffect(() => {
+    if (currentModel.value !== "sd3") {
+      const defaultModel = models[0]; // sd3 model
+      sdStore.setCurrentModel(defaultModel);
+      setParams(getModelParamBasicData(defaultModel.params({}), params));
+    }
+  }, [currentModel.value, sdStore, setParams, params]);
 
   const handleValueChange = (field: string, val: any) => {
     setParams({
@@ -294,8 +294,24 @@ export function SdPanel() {
     setParams(getModelParamBasicData(model.params({}), params));
   };
 
+  const handleTranscriptionComplete = (transcription: string) => {
+    // Use the transcription as a prompt for Islamic image generation
+    setParams({
+      ...params,
+      prompt: `Islamic educational illustration based on: ${transcription}. Traditional Islamic art style, spiritual theme, educational content.`,
+      negative_prompt:
+        "blurry, low quality, modern clothing, western architecture, non-Islamic elements, inappropriate content",
+      style: "photographic",
+      aspect_ratio: "16:9",
+    });
+  };
+
   return (
     <>
+      <DevelopmentNotice />
+      <IslamicContentGenerator />
+      <AudioTranscription onTranscriptionComplete={handleTranscriptionComplete} />
+
       <ControlParamItem title={Locale.SdPanel.AIModel}>
         <div className={styles["ai-models"]}>
           {models.map((item) => {
@@ -317,5 +333,41 @@ export function SdPanel() {
         onChange={handleValueChange}
       ></ControlParam>
     </>
+  );
+}
+
+// Development notice component
+function DevelopmentNotice() {
+  return (
+    <div
+      style={{
+        padding: "12px",
+        background: "linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%)",
+        border: "2px solid #ffc107",
+        borderRadius: "8px",
+        marginBottom: "15px",
+        textAlign: "center",
+      }}
+    >
+      <h4
+        style={{
+          margin: "0 0 8px 0",
+          color: "#856404",
+          fontSize: "14px",
+        }}
+      >
+        🚧 Development Mode
+      </h4>
+      <p
+        style={{
+          margin: "0",
+          color: "#856404",
+          fontSize: "12px",
+        }}
+      >
+        Only Stable Diffusion 3 is available for testing. Other models are
+        disabled due to plugin directory issues.
+      </p>
+    </div>
   );
 }

@@ -1,4 +1,4 @@
-export const OWNER = "digitaldakwah";
+export const OWNER = "kopiahhaji";
 export const REPO = "ustaz-ai-assistant";
 export const REPO_URL = `https://github.com/${OWNER}/${REPO}`;
 export const PLUGINS_REPO_URL = `https://github.com/${OWNER}/ustaz-ai-plugins`;
@@ -117,7 +117,7 @@ export const ACCESS_CODE_PREFIX = "nk-";
 export const LAST_INPUT_KEY = "last-input";
 export const UNFINISHED_INPUT = (id: string) => "unfinished-input-" + id;
 
-export const STORAGE_KEY = "chatgpt-next-web";
+export const STORAGE_KEY = "ustaz-ai-assistant";
 
 export const REQUEST_TIMEOUT_MS = 60000;
 export const REQUEST_TIMEOUT_MS_FOR_THINKING = REQUEST_TIMEOUT_MS * 5;
@@ -390,7 +390,7 @@ You are an AI assistant with access to system tools. Your role is to help users 
     "name": "write_file",
     "arguments": {
       "path": "/Users/river/dev/nextchat/test/joke.txt",
-      "content": "为什么数学书总是感到忧伤？因为它有太多的问题。"
+      "content": "Why do math books always feel sad? Because they have too many problems."
     }
   }
   }
@@ -707,7 +707,7 @@ const chatglmModels = [
   "cogview-3-plus",
   "cogview-3",
   "cogview-3-flash", // free
-  // 目前无法适配轮询任务
+  // Currently unable to adapt polling tasks
   //   "cogvideox",
   //   "cogvideox-flash", // free
 ];
@@ -754,7 +754,7 @@ const ai302Models = [
   "gemini-2.5-pro",
 ];
 
-let seq = 1000; // 内置的模型序号生成器从1000开始
+let seq = 1000; // Built-in model sequence generator starts from 1000
 export const DEFAULT_MODELS = [
   ...openaiModels.map((name) => ({
     name,
@@ -764,7 +764,7 @@ export const DEFAULT_MODELS = [
       id: "openai",
       providerName: "OpenAI",
       providerType: "openai",
-      sorted: 1, // 这里是固定的，确保顺序与之前内置的版本一致
+      sorted: 1, // This is fixed to ensure order consistency with previous built-in versions
     },
   })),
   ...openaiModels.map((name) => ({
@@ -941,5 +941,5 @@ export const internalAllowedWebDavEndpoints = [
 
 export const DEFAULT_GA_ID = "G-89WN60ZK2E";
 
-export const SAAS_CHAT_URL = "https://nextchat.club";
-export const SAAS_CHAT_UTM_URL = "https://nextchat.club?utm=github";
+export const SAAS_CHAT_URL = "https://cloud.digitaldakwah.org";
+export const SAAS_CHAT_UTM_URL = "https://cloud.digitaldakwah.org?utm=github";

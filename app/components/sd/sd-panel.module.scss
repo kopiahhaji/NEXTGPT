@@ -14,6 +14,7 @@
       font-size: 14px;
       font-weight: bolder;
       margin-bottom: 5px;
+      color: #2c3e50;
     }
   }
 
@@ -21,25 +22,343 @@
     font-size: 12px;
     font-weight: normal;
     margin-top: 3px;
+    color: #6c757d;
   }
   textarea {
     appearance: none;
     border-radius: 10px;
-    border: var(--border-in-light);
+    border: 2px solid #e3f2fd;
     min-height: 36px;
     box-sizing: border-box;
-    background: var(--white);
-    color: var(--black);
-    padding: 0 10px;
+    background: #ffffff;
+    color: #2c3e50;
+    padding: 8px 12px;
     max-width: 50%;
     font-family: inherit;
+    transition: border-color 0.3s ease;
+
+    &:focus {
+      outline: none;
+      border-color: #2196f3;
+      box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
+    }
   }
 }
 
 .ai-models {
   button {
     margin-bottom: 10px;
-    padding: 10px;
+    padding: 12px;
     width: 100%;
+    border-radius: 8px;
+    border: 2px solid #e3f2fd;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    color: #495057;
+    font-weight: 500;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+      border-color: #2196f3;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 8px rgba(33, 150, 243, 0.2);
+    }
+
+    &:focus {
+      outline: 2px solid #2196f3;
+      outline-offset: 2px;
+      background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+      border-color: #2196f3;
+    }
+  }
+}
+
+.islamic-generator {
+  margin-bottom: 15px;
+
+  .generator-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+
+    h3 {
+      margin: 0;
+      color: #2c3e50;
+      font-size: 18px;
+      font-weight: bold;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  .category-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 15px;
+
+    .category-button {
+      padding: 8px 16px;
+      border: 2px solid #e8f4f8;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      color: #495057;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+
+      &:hover {
+        background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+        border-color: #2196f3;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 8px rgba(33, 150, 243, 0.2);
+      }
+
+      &:focus {
+        outline: 2px solid #2196f3;
+        outline-offset: 2px;
+        background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+        border-color: #2196f3;
+      }
+
+      &.active {
+        background: linear-gradient(135deg, #2196f3 0%, #1976d2 100%);
+        color: white;
+        border-color: #1976d2;
+        box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
+      }
+    }
+  }
+
+  .prompts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+
+    .prompt-card {
+      border: 2px solid #e3f2fd;
+      border-radius: 12px;
+      padding: 16px;
+      background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      position: relative;
+      overflow: hidden;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #2196f3, #4caf50, #ff9800);
+      }
+
+      &:hover {
+        border-color: #2196f3;
+        box-shadow: 0 8px 25px rgba(33, 150, 243, 0.15);
+        transform: translateY(-2px);
+      }
+
+      .prompt-title {
+        font-weight: 600;
+        margin-bottom: 10px;
+        color: #2c3e50;
+        font-size: 15px;
+        line-height: 1.3;
+      }
+
+      .prompt-preview {
+        font-size: 13px;
+        color: #6c757d;
+        margin-bottom: 12px;
+        line-height: 1.5;
+        font-style: italic;
+      }
+    }
+  }
+}
+
+.audio-transcription {
+  margin-bottom: 15px;
+
+  .transcription-header {
+    margin-bottom: 15px;
+
+    h3 {
+      margin: 0 0 5px 0;
+      color: #2c3e50;
+      font-size: 18px;
+      font-weight: bold;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    }
+
+    p {
+      margin: 0;
+      color: #6c757d;
+      font-size: 14px;
+      font-weight: 500;
+    }
+  }
+
+  .recording-controls {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+  }
+
+  .recording-indicator {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
+    border: 2px solid #e57373;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 8px rgba(229, 115, 115, 0.2);
+
+    .recording-dot {
+      width: 10px;
+      height: 10px;
+      background: #f44336;
+      border-radius: 50%;
+      animation: pulse 1s infinite;
+      box-shadow: 0 0 8px rgba(244, 67, 54, 0.6);
+    }
+
+    span {
+      color: #c62828;
+      font-size: 14px;
+      font-weight: 600;
+    }
+  }
+
+  .transcription-result {
+    padding: 16px;
+    background: linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 100%);
+    border: 2px solid #4caf50;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 8px rgba(76, 175, 80, 0.15);
+
+    h4 {
+      margin: 0 0 12px 0;
+      color: #2e7d32;
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .transcription-text {
+      background: #ffffff;
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 12px;
+      font-size: 14px;
+      line-height: 1.6;
+      color: #2c3e50;
+      border: 1px solid #e8f5e8;
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .transcription-actions {
+      display: flex;
+      gap: 10px;
+    }
+  }
+
+  .transcription-tips {
+    padding: 14px;
+    background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+    border: 2px solid #ff9800;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(255, 152, 0, 0.15);
+
+    h4 {
+      margin: 0 0 10px 0;
+      color: #e65100;
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 20px;
+
+      li {
+        color: #bf360c;
+        font-size: 13px;
+        margin-bottom: 6px;
+        line-height: 1.4;
+        font-weight: 500;
+      }
+    }
+  }
+}
+
+@keyframes pulse {
+  0% { 
+    opacity: 1; 
+    transform: scale(1);
+  }
+  50% { 
+    opacity: 0.7; 
+    transform: scale(1.1);
+  }
+  100% { 
+    opacity: 1; 
+    transform: scale(1);
+  }
+}
+
+// Islamic-inspired decorative elements
+.islamic-pattern {
+  position: relative;
+  
+  &::after {
+    content: '✦';
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    color: #2196f3;
+    font-size: 12px;
+    opacity: 0.6;
+  }
+}
+
+// Enhanced button styling for Islamic theme
+.islamic-button {
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+  }
+  
+  &:hover::before {
+    left: 100%;
+  }
+}
+
+// Better spacing for Islamic content
+.islamic-content {
+  line-height: 1.6;
+  text-align: left;
+  
+  .arabic-text {
+    font-family: 'Arial', sans-serif;
+    direction: rtl;
+    text-align: right;
   }
 }

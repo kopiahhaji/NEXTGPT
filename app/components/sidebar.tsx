@@ -234,7 +234,7 @@ export function SideBar(props: { className?: string }) {
   const [mcpEnabled, setMcpEnabled] = useState(false);
 
   useEffect(() => {
-    // 检查 MCP 是否启用
+    // Check if MCP is enabled
     const checkMcpStatus = async () => {
       const enabled = await isMcpEnabled();
       setMcpEnabled(enabled);
@@ -250,8 +250,8 @@ export function SideBar(props: { className?: string }) {
       {...props}
     >
       <SideBarHeader
-        title="NextChat"
-        subTitle="Build your own AI assistant."
+        title="Ustaz AI"
+        subTitle="Islamic Education Assistant"
         logo={<ChatGptIcon />}
         shouldNarrow={shouldNarrow}
       >
