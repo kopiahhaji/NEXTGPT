@@ -1,13 +1,20 @@
-export const OWNER = "ChatGPTNextWeb";
-export const REPO = "ChatGPT-Next-Web";
+export const OWNER = "digitaldakwah";
+export const REPO = "ustaz-ai-assistant";
 export const REPO_URL = `https://github.com/${OWNER}/${REPO}`;
-export const PLUGINS_REPO_URL = `https://github.com/${OWNER}/NextChat-Awesome-Plugins`;
+export const PLUGINS_REPO_URL = `https://github.com/${OWNER}/ustaz-ai-plugins`;
 export const ISSUE_URL = `https://github.com/${OWNER}/${REPO}/issues`;
 export const UPDATE_URL = `${REPO_URL}#keep-updated`;
 export const RELEASE_URL = `${REPO_URL}/releases`;
 export const FETCH_COMMIT_URL = `https://api.github.com/repos/${OWNER}/${REPO}/commits?per_page=1`;
 export const FETCH_TAG_URL = `https://api.github.com/repos/${OWNER}/${REPO}/tags?per_page=1`;
 export const RUNTIME_CONFIG_DOM = "danger-runtime-config";
+
+// Digital Dakwah Platform Configuration
+export const PLATFORM_NAME = "Digital Dakwah Platform";
+export const PLATFORM_URL = "https://cloud.digitaldakwah.org";
+export const DEVELOPER_NAME = "Rodhi Rahman";
+export const DEVELOPER_TITLE = "Founder & Developer";
+export const AI_ASSISTANT_NAME = "Ustaz AI";
 
 export const STABILITY_BASE_URL = "https://api.stability.ai";
 
@@ -288,12 +295,22 @@ export const DEFAULT_INPUT_TEMPLATE = `{{input}}`; // input / time / model / lan
 // Latex block: $$e=mc^2$$
 // `;
 export const DEFAULT_SYSTEM_TEMPLATE = `
-You are ChatGPT, a large language model trained by {{ServiceProvider}}.
-Knowledge cutoff: {{cutoff}}
+You are Ustaz AI, an Islamic education assistant powered by Digital Dakwah Platform.
+Developed by Rodhi Rahman, you help users with Islamic learning, Quran studies, and religious education.
+Platform: Digital Dakwah Platform (${PLATFORM_URL})
 Current model: {{model}}
 Current time: {{time}}
 Latex inline: \\(x^2\\) 
 Latex block: $$e=mc^2$$
+
+You specialize in:
+- Islamic education and learning
+- Quran and Hadith studies
+- Religious guidance and counseling
+- Educational content creation
+- Islamic knowledge dissemination
+
+Always maintain respectful, educational, and culturally appropriate responses.
 `;
 
 export const MCP_TOOLS_TEMPLATE = `
