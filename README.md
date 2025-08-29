@@ -55,13 +55,16 @@ Ustaz AI is an Islamic education platform powered by Digital Dakwah, developed b
 - Educators and religious teachers
 - Anyone interested in learning about Islam
 
-## ❤️ Sponsor AI API
+## 🏷️ Pricing & Subscription Tiers
 
-<a href='https://302.ai/'>
-  <img src="https://github.com/user-attachments/assets/a03edf82-2031-4f23-bdb8-bfc0bfd168a4" width="100%" alt="icon"/>
-</a>
+Ustaz AI offers flexible pricing tiers designed for different learning needs:
 
-[302.AI](https://302.ai/) is a pay-as-you-go AI application platform that offers the most comprehensive AI APIs and online applications available.
+- 🆓 **[Free Tier](./PRICING.md#free-tier-features-)** - Basic access for individual learners
+- 💎 **[Premium Tier](./PRICING.md#premium-tier-features-)** - Enhanced features for serious students  
+- 🎓 **[Asatizah Tier](./PRICING.md#asatizah-tier-features-)** - Professional tools for educators
+- 🏢 **[Enterprise Tier](./PRICING.md#enterprise-tier-)** - Institutional solutions
+
+📋 **[Complete Pricing Guide](./docs/pricing-tiers.md)** | 📊 **[Quick Reference](./PRICING.md)**
 
 ## 🥳 Cheer for Ustaz AI iOS Version Online!
 
@@ -403,14 +406,51 @@ NodeJS >= 18, Docker >= 20
 
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/Yidadaa/ChatGPT-Next-Web)
 
-Before starting development, you must create a new `.env.local` file at project root, and place your api key into it:
+### ⚠️ Security Notice
 
-```
-OPENAI_API_KEY=<your api key here>
+**Never commit API keys or sensitive information to version control!**
 
-# if you are not able to access openai service, use this BASE_URL
-BASE_URL=https://chatgpt1.nextweb.fun/api/proxy
+Your `.env.local` file contains sensitive information and is automatically excluded by `.gitignore`. However, always double-check before committing:
+
+```bash
+# Check what files are staged for commit
+git status
+
+# If .env files appear in git status, DO NOT commit them
+# Instead, remove them from staging:
+git reset .env*
+git rm --cached .env*
 ```
+
+### Environment Setup
+
+1. **Copy the example environment file:**
+   ```bash
+   cp .env.example .env.local
+   ```
+
+2. **Edit `.env.local` and add your API keys:**
+   ```bash
+   # Required: OpenAI API Key
+   OPENAI_API_KEY=sk-your-actual-openai-api-key-here
+
+   # Optional: Other API keys
+   GOOGLE_API_KEY=your-google-api-key-here
+   ANTHROPIC_API_KEY=sk-ant-your-anthropic-key-here
+   DEEPSEEK_API_KEY=sk-your-deepseek-api-key-here
+   ```
+
+3. **For Islamic Education Features, configure:**
+   ```bash
+   # Supabase (for user data and Islamic content)
+   NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key-here
+   SUPABASE_SERVICE_ROLE_KEY=your-service-role-key-here
+
+   # Additional Islamic tools
+   WOLFRAM_ALPHA_APPID=your-wolfram-alpha-appid
+   TAVILY_API_KEY=your-tavily-api-key
+   ```
 
 ### Local Development
 
@@ -421,6 +461,17 @@ BASE_URL=https://chatgpt1.nextweb.fun/api/proxy
 yarn install
 yarn dev
 ```
+
+### 🔐 API Key Security Best Practices
+
+- **Never share API keys** in screenshots, emails, or public forums
+- **Use environment variables** instead of hardcoding keys in code
+- **Rotate API keys regularly** for better security
+- **Monitor API usage** to detect unauthorized access
+- **Use separate keys** for development and production
+- **Restrict API keys** to specific domains/IPs when possible
+
+For more information about environment variables, see the [Environment Variables](#environment-variables) section above.
 
 ## Deployment
 
