@@ -1,0 +1,63 @@
+# Vercel Deployment Configuration for Ustaz AI
+# Islamic Education Assistant - Digital Dakwah Platform
+
+# Ignore development files
+.env.local
+.env.development
+.env.test
+
+# Ignore build artifacts and cache
+.next/
+out/
+dist/
+build/
+
+# Ignore development dependencies
+node_modules/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Ignore IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Ignore OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Ignore Git
+.git/
+.gitignore
+
+# Ignore documentation (keep essential ones)
+docs/
+*.md
+!README.md
+
+# Ignore test files
+test/
+*.test.js
+*.test.ts
+__tests__/
+
+# Ignore development scripts
+scripts/
+!scripts/fetch-prompts.mjs
+
+# Keep essential files
+!public/
+!app/
+!package.json
+!vercel.json
+!next.config.mjs
+!tsconfig.json
