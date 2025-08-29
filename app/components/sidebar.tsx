@@ -288,6 +288,50 @@ export function SideBar(props: { className?: string }) {
             shadow
           />
         </div>
+
+        {/* Level Navigation Section */}
+        <div className={styles["sidebar-levels-section"]}>
+          <div className={styles["sidebar-levels-title"]}>
+            {!shouldNarrow && "Learning Levels"}
+          </div>
+          <div className={styles["sidebar-level-buttons"]}>
+            <IconButton
+              icon={<span>🌱</span>}
+              text={shouldNarrow ? undefined : "Beginners"}
+              className={styles["sidebar-level-button"]}
+              onClick={() => window.open('/beginner', '_blank')}
+              shadow
+            />
+            <IconButton
+              icon={<span>🎈</span>}
+              text={shouldNarrow ? undefined : "Kids"}
+              className={styles["sidebar-level-button"]}
+              onClick={() => window.open('/kids', '_blank')}
+              shadow
+            />
+            <IconButton
+              icon={<span>🌙</span>}
+              text={shouldNarrow ? undefined : "Muallaf"}
+              className={styles["sidebar-level-button"]}
+              onClick={() => window.open('/muallaf', '_blank')}
+              shadow
+            />
+            <IconButton
+              icon={<span>🕊️</span>}
+              text={shouldNarrow ? undefined : "Senior"}
+              className={styles["sidebar-level-button"]}
+              onClick={() => window.open('/senior', '_blank')}
+              shadow
+            />
+            <IconButton
+              icon={<span>📚</span>}
+              text={shouldNarrow ? undefined : "Professional"}
+              className={styles["sidebar-level-button"]}
+              onClick={() => window.open('/professional', '_blank')}
+              shadow
+            />
+          </div>
+        </div>
         {showDiscoverySelector && (
           <Selector
             items={[

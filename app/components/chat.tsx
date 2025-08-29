@@ -122,9 +122,10 @@ import { MsEdgeTTS, OUTPUT_FORMAT } from "../utils/ms_edge_tts";
 
 import { isEmpty } from "lodash-es";
 import { getModelProvider } from "../utils/model";
+import { UstazAIModeSelector, UserType } from "./ustaz-ai-mode-selector";
 import { RealtimeChat } from "@/app/components/realtime-chat";
 import clsx from "clsx";
-import { getAvailableClientsCount, isMcpEnabled } from "../mcp/actions";
+import { isMcpEnabled, getAvailableClientsCount } from "../mcp/actions";
 
 const localStorage = safeLocalStorage();
 
@@ -594,7 +595,7 @@ export function ChatActions(props: {
           : nextModel.name,
       );
     }
-  }, [chatStore, currentModel, models, session]);
+  }, [chatStore, currentModel, models, session, props]);
 
   return (
     <div className={styles["chat-input-actions"]}>
@@ -986,7 +987,12 @@ export function ShortcutKeyModal(props: { onClose: () => void }) {
   );
 }
 
-function _Chat() {
+function _Chat(props?: {
+  ustazAIMode?: boolean;
+  userType?: string;
+  userId?: string;
+}) {
+  const { ustazAIMode = false, userType, userId } = props || {};
   type RenderMessage = ChatMessage & { preview?: boolean };
 
   const chatStore = useChatStore();
@@ -1017,7 +1023,7 @@ function _Chat() {
       scrollRef.current.getBoundingClientRect().top;
     // leave some space for user question
     return topDistance < 100;
-  }, [scrollRef?.current?.scrollHeight]);
+  }, [scrollRef]);
 
   const isTyping = userInput !== "";
 
@@ -1033,6 +1039,13 @@ function _Chat() {
   const navigate = useNavigate();
   const [attachImages, setAttachImages] = useState<string[]>([]);
   const [uploading, setUploading] = useState(false);
+
+  // USTAZ AI state management
+  const [currentUstazAIMode, setCurrentUstazAIMode] = useState(ustazAIMode);
+  const [currentUserType, setCurrentUserType] = useState<UserType | null>(
+    userType as UserType || null
+  );
+  const [currentUserId, setCurrentUserId] = useState<string | null>(userId || null);
 
   // prompt hints
   const promptStore = usePromptStore();
@@ -1102,7 +1115,7 @@ function _Chat() {
     }
   };
 
-  const doSubmit = (userInput: string) => {
+  const doSubmit = async (userInput: string) => {
     if (userInput.trim() === "" && isEmpty(attachImages)) return;
     const matchCommand = chatCommands.match(userInput);
     if (matchCommand.matched) {
@@ -1111,16 +1124,97 @@ function _Chat() {
       matchCommand.invoke();
       return;
     }
+
+    // Check if USTAZ AI mode is enabled
+    if (currentUstazAIMode && currentUserType && currentUserId) {
+      await doUstazAISubmit(userInput);
+    } else {
+      setIsLoading(true);
+      chatStore
+        .onUserInput(userInput, attachImages)
+        .then(() => setIsLoading(false));
+      setAttachImages([]);
+      chatStore.setLastInput(userInput);
+      setUserInput("");
+      setPromptHints([]);
+      if (!isMobileScreen) inputRef.current?.focus();
+      setAutoScroll(true);
+    }
+  };
+
+  const doUstazAISubmit = async (userInput: string) => {
+    if (!currentUserType || !currentUserId) return;
+
     setIsLoading(true);
-    chatStore
-      .onUserInput(userInput, attachImages)
-      .then(() => setIsLoading(false));
-    setAttachImages([]);
-    chatStore.setLastInput(userInput);
-    setUserInput("");
-    setPromptHints([]);
-    if (!isMobileScreen) inputRef.current?.focus();
-    setAutoScroll(true);
+    try {
+      // Get conversation history for context
+      const conversationHistory = session.messages.map(msg => ({
+        role: msg.role,
+        content: getMessageTextContent(msg)
+      }));
+
+      // Add current user message
+      const messages = [
+        ...conversationHistory,
+        { role: 'user' as const, content: userInput }
+      ];
+
+      // Call USTAZ AI API
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          messages,
+          userType: currentUserType,
+          userId: currentUserId
+        }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to get USTAZ AI response');
+      }
+
+      const data = await response.json();
+
+      // Add AI response to chat
+      const aiMessage = createMessage({
+        role: 'assistant',
+        content: data.response,
+        model: data.model
+      });
+
+      // Update session with both user and AI messages
+      chatStore.updateTargetSession(session, (session) => {
+        session.messages.push(
+          createMessage({
+            role: 'user',
+            content: userInput
+          }),
+          aiMessage
+        );
+      });
+
+      // Show cost information
+      if (data.cost > 0) {
+        showToast(`💰 Cost: $${data.cost.toFixed(4)} | Model: ${data.model}`, undefined, 3000);
+      }
+
+      setAttachImages([]);
+      chatStore.setLastInput(userInput);
+      setUserInput("");
+      setPromptHints([]);
+      if (!isMobileScreen) inputRef.current?.focus();
+      setAutoScroll(true);
+
+    } catch (error: any) {
+      console.error('USTAZ AI Error:', error);
+      showToast(`❌ USTAZ AI Error: ${error.message}`, undefined, 5000);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const onPromptSelect = (prompt: RenderPrompt) => {
@@ -2040,6 +2134,16 @@ function _Chat() {
                 })}
             </div>
             <div className={styles["chat-input-panel"]}>
+              {/* USTAZ AI Mode Selector */}
+              <UstazAIModeSelector
+                ustazAIMode={currentUstazAIMode}
+                userType={currentUserType}
+                userId={currentUserId}
+                onModeChange={setCurrentUstazAIMode}
+                onUserTypeChange={setCurrentUserType}
+                onUserIdChange={setCurrentUserId}
+              />
+
               <PromptHints
                 prompts={promptHints}
                 onPromptSelect={onPromptSelect}
@@ -2164,8 +2268,12 @@ function _Chat() {
   );
 }
 
-export function Chat() {
+export function Chat(props?: {
+  ustazAIMode?: boolean;
+  userType?: string;
+  userId?: string;
+}) {
   const chatStore = useChatStore();
   const session = chatStore.currentSession();
-  return <_Chat key={session.id}></_Chat>;
+  return <_Chat key={session.id} {...props}></_Chat>;
 }

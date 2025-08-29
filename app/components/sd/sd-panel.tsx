@@ -290,7 +290,7 @@ export function SdPanel() {
     });
   };
   const handleModelChange = (model: any) => {
-    setCurrentModel(model);
+    sdStore.setCurrentModel(model);
     setParams(getModelParamBasicData(model.params({}), params));
   };
 

@@ -1,5 +1,6 @@
 import fs from "fs";
 import path from "path";
+import { fileURLToPath } from "url";
 import { CN_MASKS } from "./cn";
 import { TW_MASKS } from "./tw";
 import { EN_MASKS } from "./en";
@@ -12,6 +13,7 @@ const BUILTIN_MASKS: Record<string, BuiltinMask[]> = {
   en: EN_MASKS,
 };
 
+const __filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(__filename);
 
 fs.writeFile(
